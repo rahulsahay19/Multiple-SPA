@@ -1,12 +1,14 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "$schema": "./node_modules/@nrwl/schematics/src/schema.json",
   "project": {
-    "name": "existing-proj"
+    "name": "existing-proj",
+    "npmScope": "first-suite",
+    "latestMigration": "20180130-angular-devkit-schematics"
   },
   "apps": [
     {
-      "root": "src",
-      "outDir": "dist",
+      "root": "apps\\first-client\\src",
+      "outDir": "dist\\apps\\first-client",
       "assets": [
         "assets",
         "favicon.ico"
@@ -14,9 +16,35 @@
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
-      "test": "test.ts",
+      "test": "../../../test.js",
       "tsconfig": "tsconfig.app.json",
-      "testTsconfig": "tsconfig.spec.json",
+      "testTsconfig": "../../../tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.css"
+      ],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      },
+      "name": "first-client"
+    },
+    {
+      "name": "second-client",
+      "root": "apps/second-client/src",
+      "outDir": "dist/apps/second-client",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "../../../test.js",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "../../../tsconfig.spec.json",
       "prefix": "app",
       "styles": [
         "styles.css"
@@ -27,6 +55,49 @@
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
+    },
+    {
+      "name": "third-client",
+      "root": "apps/third-client/src",
+      "outDir": "dist/apps/third-client",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "../../../test.js",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "../../../tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.css"
+      ],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    },
+    {
+      "name": "first-lib",
+      "root": "libs/first-lib/src",
+      "test": "../../../test.js",
+      "appRoot": ""
+    },
+    {
+      "name": "second-lib",
+      "root": "libs/second-lib/src",
+      "test": "../../../test.js",
+      "appRoot": ""
+    },
+    {
+      "name": "third-lib",
+      "root": "libs/third-lib/src",
+      "test": "../../../test.js",
+      "appRoot": ""
     }
   ],
   "e2e": {
@@ -36,15 +107,31 @@
   },
   "lint": [
     {
-      "project": "src/tsconfig.app.json",
+      "project": "apps\\first-client\\src/tsconfig.app.json",
       "exclude": "**/node_modules/**"
     },
     {
-      "project": "src/tsconfig.spec.json",
+      "project": "./tsconfig.spec.json",
       "exclude": "**/node_modules/**"
     },
     {
-      "project": "e2e/tsconfig.e2e.json",
+      "project": "first-client/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "apps/second-client/src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "apps/second-client/e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "apps/third-client/src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "apps/third-client/e2e/tsconfig.e2e.json",
       "exclude": "**/node_modules/**"
     }
   ],
@@ -54,6 +141,14 @@
     }
   },
   "defaults": {
+    "schematics": {
+      "collection": "@nrwl/schematics",
+      "postGenerate": "npm run format",
+      "newProject": [
+        "app",
+        "lib"
+      ]
+    },
     "styleExt": "css",
     "component": {}
   }

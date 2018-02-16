@@ -1,0 +1,14 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc/apps/third-client",
+    "module": "es2015"
+  },
+  "include": [
+    "**/*.ts"
+    , "../../../libs/third-lib/index.ts"
+],
+  "exclude": [
+    "**/*.spec.ts"
+  ]
+}
