@@ -42,7 +42,7 @@
     "@ngrx/router-store": "4.1.1",
     "@ngrx/effects": "4.1.1",
     "@ngrx/store-devtools": "4.1.1",
-    "@angular/cli": "file:.angular_cli165.tgz"
+    "@angular/cli": "1.6.6"
   },
   "devDependencies": {
     "@angular/cli": "1.6.6",
